@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">VueMarket</a>
+      <router-link class="navbar-brand" to="/">VueMarket</router-link>
       <button
         class="navbar-toggler"
         type="button"
@@ -16,68 +16,67 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <router-link class="nav-link active" aria-current="page" to="/">Home</router-link>
           </li>
         </ul>
         <!-- icono carrito de compras -->
-        <div class="carrito-container d-flex">
-         <div class="carrito-icon">
-           <!-- icono del carro -->
-           <i class="fas fa-cart-plus"></i>
-         </div>
+        <router-link to="/carrito" class="carrito-container d-flex">
+          <div class="carrito-icon">
+            <!-- icono del carro -->
+            <i class="fas fa-cart-plus"></i>
+          </div>
           <div class="counter">
             <div class="counter-number">
               {{ Object.keys(carrito).length }}
             </div>
           </div>
-        </div>
-         <!-- /icono carrito de compras -->
+        </router-link>
+        <!-- /icono carrito de compras -->
       </div>
     </div>
   </nav>
 </template>
 
 <script>
-import {useStore} from 'vuex'
-import{computed} from 'vue'
+import { useStore } from "vuex";
+import { computed } from "vue";
 export default {
-  setup(){
+  setup() {
     const store = useStore();
 
-const carrito = computed(()=> store.state.carrito)
-return{
-  carrito
-}
-}
+    const carrito = computed(() => store.state.carrito);
+    return {
+      carrito,
+    };
+  },
 };
 </script>
 
 <style>
-.navbar{
+.navbar {
   box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.4);
 }
 
-.carrito-container{
+.carrito-container {
   position: relative;
 }
-.carrito-icon{
+.carrito-icon {
   font-size: 32px;
   color: #37976c;
   margin-right: 40px;
 }
-.counter{
+.counter {
   position: absolute;
   background-color: red;
   color: white;
   padding: 10px;
-  border-radius:50%;
+  border-radius: 50%;
   height: 32px;
   width: 30px;
   top: -8px;
   left: 29px;
-
 }
-.counter .counter-number{
+.counter .counter-number {
   position: relative;
   top: -6px;
 }
